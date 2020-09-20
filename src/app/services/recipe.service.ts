@@ -1,27 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { Recipe } from '../recipes/recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RecipeService {
-  private recipes: Recipe[] = [
-    new Recipe(
-      'One recipe',
-      'The best one',
-      'https://p0.pikist.com/photos/111/270/zucchini-wraps-zucchini-slices-food-fish-fillet-recipe-fish-recipes-plated-food-delicious-food-beautiful-food-green.jpg',
-      [new Ingredient('Tomato', 10), new Ingredient('Garlic', 3)]
-    ),
-    new Recipe(
-      'Other recipe',
-      'Very Good',
-      'https://p0.pikist.com/photos/111/270/zucchini-wraps-zucchini-slices-food-fish-fillet-recipe-fish-recipes-plated-food-delicious-food-beautiful-food-green.jpg',
-      [new Ingredient('Apple', 4), new Ingredient('Onion', 2)]
-    ),
-  ];
+  recipesChanged = new Subject<Recipe[]>();
+
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) {}
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.getRecipes());
+  }
 
   getRecipes() {
     return this.recipes.slice();
@@ -33,5 +28,20 @@ export class RecipeService {
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.getRecipes());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recipesChanged.next(this.getRecipes());
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.getRecipes());
   }
 }
