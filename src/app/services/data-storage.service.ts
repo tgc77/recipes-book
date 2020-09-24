@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { exhaustMap, map, take, tap } from 'rxjs/operators';
 
 import { RecipeService } from './recipe.service';
 import { Recipe } from '../recipes/recipe.model';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
   private FIREBASE_URL = 'https://recipes-book-3cf62.firebaseio.com/';
   private RECIPES_URL = this.FIREBASE_URL + 'recipes.json';
 
-  constructor(private http: HttpClient, private recipeService: RecipeService) {}
+  constructor(
+    private http: HttpClient,
+    private recipeService: RecipeService,
+    private authService: AuthService
+  ) {}
 
   storeRecipes() {
     const recipes = this.recipeService.getRecipes();
