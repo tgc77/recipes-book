@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
 
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
 
 export interface IAuthResponseData {
   kind: string;
@@ -24,7 +25,7 @@ export class AuthService {
   private LOGIN_URL =
     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.SIGNUP_URL += this.API_KEY;
     this.LOGIN_URL += this.API_KEY;
   }
@@ -78,6 +79,11 @@ export class AuthService {
           );
         })
       );
+  }
+
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
   }
 
   private handleError(errorRes: HttpErrorResponse) {
