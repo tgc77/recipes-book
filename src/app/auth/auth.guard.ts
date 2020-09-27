@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 
@@ -18,8 +18,13 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean | Promise<boolean> | Observable<boolean | UrlTree> {
+  ):
+    | boolean
+    | UrlTree
+    | Promise<boolean | UrlTree>
+    | Observable<boolean | UrlTree> {
     return this.authService.user.pipe(
+      take(1),
       map((user) => {
         const isAuth = !!user;
         if (isAuth) {
