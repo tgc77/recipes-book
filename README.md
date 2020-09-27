@@ -1,6 +1,12 @@
-# MyRecipes
+# Recipes Book
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
+
+To see running on firebase hosting: https://recipes-book-3cf62.web.app
+
+![Auth App](Screen Shot App-I.png)
+
+![Recipes Book](Screen Shot App-II.png)
 
 ## Development server
 
