@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
@@ -20,15 +21,13 @@ export interface IAuthResponseData {
 export class AuthService {
   user = new BehaviorSubject<User>(null);
   private _tokenExpirationTimer: any;
-  private API_KEY = 'AIzaSyAX2TH71BPl3UYNRh4latgzo1GCPSbvpGM';
-  private SIGNUP_URL =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
-  private LOGIN_URL =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+  private API_KEY = environment.API_KEY;
+  private SIGNUP_URL;
+  private LOGIN_URL;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.SIGNUP_URL += this.API_KEY;
-    this.LOGIN_URL += this.API_KEY;
+    this.SIGNUP_URL = environment.SIGNUP_URL + this.API_KEY;
+    this.LOGIN_URL = environment.LOGIN_URL + this.API_KEY;
   }
 
   signup(email: string, password: string) {
