@@ -6,7 +6,7 @@ To see running on firebase hosting: https://recipes-book-3cf62.web.app
 
 ![Auth App](https://github.com/tgc77/recipes-book/blob/master/Screen%20Shot%20App-I.png?raw=true)
 
-![Recipes Book](https://github.com/tgc77/recipes-book/blob/master/Screen%20Shot%20App-I.png?raw=true)
+![Recipes Book](https://github.com/tgc77/recipes-book/blob/master/Screen%20Shot%20App-II.png?raw=true)
 
 ## Development server
 
