@@ -4,9 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 To see running on firebase hosting: https://recipes-book-3cf62.web.app
 
-![Auth App](./Screen Shot App-I.png?raw=true)
+![Auth App](https://github.com/tgc77/recipes-book/blob/master/Screen%20Shot%20App-I.png?raw=true)
 
-![Recipes Book](./Screen Shot App-II.png?raw=true)
+![Recipes Book](https://github.com/tgc77/recipes-book/blob/master/Screen%20Shot%20App-I.png?raw=true)
 
 ## Development server
 
