@@ -1,5 +1,5 @@
 {
-  "name": "my-recipes",
+  "name": "recipes-book",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
